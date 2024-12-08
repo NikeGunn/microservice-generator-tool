@@ -4,23 +4,16 @@ import { Command } from 'commander';
 import chalk from 'chalk';
 import figlet from 'figlet';
 import boxen from 'boxen';
-import { readFileSync } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import fs from 'fs';
 
-// Resolve the directory of the current file for ES modules
+// Dynamically resolve file paths
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Dynamically fetch the installed version from package.json
-const packagePath = path.resolve(__dirname, '../package.json');
-let version = 'unknown';
-try {
-  const packageData = JSON.parse(readFileSync(packagePath, 'utf8'));
-  version = packageData.version;
-} catch (error) {
-  console.error(chalk.red(`Error reading version: ${error.message}`));
-}
+// Path to templates (resolved dynamically)
+const templatesDir = path.resolve(__dirname, '../src/templates/common');
 
 // Add a banner and splash text
 const welcomeText = figlet.textSync('TurboGen', {
@@ -45,13 +38,13 @@ const infoBox = boxen(
   }
 );
 
-// Program introduction with branding
 const program = new Command();
 
+// Program introduction with branding
 program
   .name('turbogen')
   .description('CLI tool for generating microservices templates')
-  .version(version) // Dynamically use the installed version
+  .version('1.0.4')  // Update version accordingly
   .hook('preAction', () => {
     console.log(chalk.cyan(welcomeText));
     console.log(infoBox);
@@ -64,6 +57,15 @@ program
   .action(async () => {
     console.log(chalk.greenBright('Initializing your microservices project... Please wait.'));
     
+    // Error handling if the templates folder doesn't exist
+    if (!fs.existsSync(templatesDir)) {
+      console.error(chalk.redBright(`Error: Template directory not found at ${templatesDir}.`));
+      process.exit(1);
+    }
+
+    console.log(`Template directory path: ${templatesDir}`);
+
+    // Simulate the project initialization
     const { initProject } = await import('../src/commands/init.js');
     initProject();
   });
@@ -88,6 +90,7 @@ program.on('command:*', () => {
   program.help();
 });
 
+// Display usage message if no command is provided
 program.on('exit', (code) => {
   if (code !== 0) {
     console.log(chalk.redBright('Oops! Something went wrong.'));
