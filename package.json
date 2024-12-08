@@ -2,6 +2,7 @@
   "name": "turbogen",
   "version": "1.0.3",
   "description": "CLI tool for generating project templates",
+  "type": "module",
   "main": "bin/cli.js",
   "bin": {
     "turbogen": "./bin/cli.js"
@@ -17,8 +18,10 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "boxen": "^8.0.1",
     "chalk": "^4.1.2",
     "commander": "^9.5.0",
+    "figlet": "^1.8.0",
     "fs-extra": "^10.1.0",
     "inquirer": "^12.2.0",
     "prompts": "^2.4.2",

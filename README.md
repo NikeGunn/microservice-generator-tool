@@ -1,4 +1,24 @@
-# Microservices Template
+# 🌀 **TurboGen CLI** 🌀  
+
+
+```text
+ |_   _|   _ _ __| |__   ___  / ___| ___ _ __  
+   | || | | | '__| '_ \ / _ \| |  _ / _ \ '_ \ 
+   | || |_| | |  | |_) | (_) | |_| |  __/ | | |
+   |_| \__,_|_|  |_.__/ \___/ \____|\___|_| |_|
+
+╭──────────────────────────────────────────────╮
+│                                              │
+│ Welcome to TurboGen CLI! 🚀                  │
+│ Generate Microservices Templates Effortlessly│
+│ Use --help for available commands            │
+│                                              │
+╰──────────────────────────────────────────────╯
+
+✨ TurboGen CLI is your ultimate toolkit for kickstarting scalable microservices architecture. With pre-built templates and cutting-edge features, you can focus on what matters: building great software!
+
+
+This is a generated microservices template using the `turbogen`
 
 This is a generated microservices template using the `turbogen` CLI tool. It provides a structured and production-ready foundation for building scalable microservices.
 

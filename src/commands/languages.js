@@ -1,4 +1,4 @@
-const chalk = require('chalk');
+import chalk from 'chalk';
 
 const languages = () => {
   console.log(chalk.green('Supported languages:'));
@@ -6,4 +6,4 @@ const languages = () => {
   console.log(chalk.blue('2. Go (go)'));
 };
 
-module.exports = { languages };
+export { languages };

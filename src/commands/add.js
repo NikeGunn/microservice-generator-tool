@@ -1,4 +1,4 @@
-const chalk = require('chalk');
+import chalk from 'chalk';
 
 const addFeature = async (feature) => {
   try {
@@ -23,4 +23,4 @@ const addFeature = async (feature) => {
   }
 };
 
-module.exports = { addFeature };
+export { addFeature };

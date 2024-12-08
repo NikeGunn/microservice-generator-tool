@@ -1,31 +1,27 @@
-const inquirer = require('inquirer');
-const fs = require('fs-extra');
-const chalk = require('chalk');
-const path = require('path');
+import fs from 'fs-extra';
+import path from 'path';
+import chalk from 'chalk';
+import prompts from 'prompts';
 
 const generateTemplate = async (options) => {
   try {
-    const answers = options.language
-      ? { language: options.language }
-      : await inquirer.prompt([
-          {
-            type: 'list',
-            name: 'language',
-            message: 'Choose the language for your microservice:',
-            choices: ['nodejs', 'go'],
-          },
-        ]);
+    console.log(chalk.green(`Generating a ${options.language} microservice template...`));
 
-    const language = answers.language;
-    const templateDir = path.resolve(__dirname, `../../templates/${language}`);
-    const targetDir = path.resolve(process.cwd(), language);
+    // Implement the logic to generate the template for the chosen language
+    const templatePath = path.resolve(__dirname, `../templates/${options.language}`);
 
-    fs.copySync(templateDir, targetDir);
+    if (!fs.existsSync(templatePath)) {
+      console.error(chalk.red(`Template for ${options.language} not found!`));
+      return;
+    }
 
-    console.log(chalk.green(`Microservice template (${language}) generated successfully!`));
+    // Example of copying template files
+    fs.copySync(templatePath, process.cwd());
+
+    console.log(chalk.blue(`${options.language} microservice template generated successfully!`));
   } catch (error) {
     console.error(chalk.red('Error generating template:'), error.message);
   }
 };
 
-module.exports = { generateTemplate };
+export { generateTemplate };

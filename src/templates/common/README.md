@@ -1,6 +1,6 @@
 # Microservices Template
 
-This is a generated microservices template using the `microgen` CLI tool. It provides a structured and production-ready foundation for building scalable microservices.
+This is a generated microservices template using the `turbogen` CLI tool. It provides a structured and production-ready foundation for building scalable microservices.
 
 ## Features
 - **Preconfigured Docker support** for containerization.
@@ -19,13 +19,13 @@ This is a generated microservices template using the `microgen` CLI tool. It pro
 ### Commands
 1. Initialize a new microservices project:
    ```bash
-   microgen init
+   turbogen init
    ```
    This creates basic project files like .gitignore and README.md.
 
 2. Generate a microservices template:
    ```bash
-   microgen generate -l <language>
+   turbogen generate -l <language>
    ```
    Replace `<language>` with either `nodejs` or `go`.
 

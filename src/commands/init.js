@@ -1,8 +1,10 @@
-const fs = require('fs-extra');
-const path = require('path');
-const chalk = require('chalk');
-const prompts = require('prompts');
+import fs from 'fs-extra';
+import path from 'path';
+import chalk from 'chalk';
+import prompts from 'prompts'; // Import prompts
+import { fileURLToPath } from 'url';
 
+// Function to initialize the project
 const initProject = async () => {
   try {
     console.log(chalk.green('Initializing a new microservices project...'));
@@ -19,17 +21,31 @@ const initProject = async () => {
       return;
     }
 
-    const rootDir = process.cwd();
-    const templateDir = path.resolve(__dirname, '../templates/common');
+    // Resolve the directory path dynamically
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
 
+    // Adjust the template directory path
+    const templateDir = path.resolve(__dirname, '../../src/templates/common');
+
+    // Debugging: Log the resolved path
+    console.log(chalk.blue('Template directory path: '), templateDir);
+
+    // Check if the template directory exists
     if (!fs.existsSync(templateDir)) {
       console.error(chalk.red('Template directory not found!'));
       return;
     }
 
+    // Define files to copy
     const files = ['.gitignore', 'README.md'];
+    const rootDir = process.cwd();
+
+    // Copy template files to the current working directory
     files.forEach((file) => {
-      fs.copySync(path.join(templateDir, file), path.join(rootDir, file));
+      const srcFile = path.join(templateDir, file);
+      const destFile = path.join(rootDir, file);
+      fs.copySync(srcFile, destFile);
     });
 
     console.log(chalk.blue('Project initialized successfully!'));
@@ -38,4 +54,4 @@ const initProject = async () => {
   }
 };
 
-module.exports = { initProject };
+export { initProject };
