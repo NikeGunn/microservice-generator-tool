@@ -1,0 +1,31 @@
+{
+  "name": "project-generator",
+  "version": "1.0.0",
+  "description": "CLI tool for generating project templates",
+  "main": "bin/cli.js",
+  "bin": {
+    "microgen": "./bin/cli.js"
+  },
+  "scripts": {
+    "start": "node bin/cli.js"
+  },
+  "keywords": [
+    "cli",
+    "generator",
+    "templates"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^9.5.0",
+    "fs-extra": "^10.1.0",
+    "inquirer": "^12.2.0",
+    "prompts": "^2.4.2",
+    "shelljs": "^0.8.5"
+  },
+  "devDependencies": {
+    "eslint": "^9.16.0",
+    "prettier": "^3.4.2"
+  }
+}
