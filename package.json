@@ -1,10 +1,10 @@
 {
-  "name": "microgen",
+  "name": "turbogen",
   "version": "1.0.2",
   "description": "CLI tool for generating project templates",
   "main": "bin/cli.js",
   "bin": {
-    "microgen": "./bin/cli.js"
+    "turbogen": "./bin/cli.js"
   },
   "scripts": {
     "start": "node bin/cli.js"
