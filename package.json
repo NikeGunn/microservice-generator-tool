@@ -1,5 +1,5 @@
 {
-  "name": "project-generator",
+  "name": "microgen",
   "version": "1.0.1",
   "description": "CLI tool for generating project templates",
   "main": "bin/cli.js",
