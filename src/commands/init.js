@@ -2,7 +2,7 @@ import fs from 'fs-extra';
 import path from 'path';
 import chalk from 'chalk';
 import prompts from 'prompts'; // Import prompts
-import { fileURLToPath } from 'url';
+import { fileURLToPath } from 'url'; // Import fileURLToPath from 'url'
 
 // Function to initialize the project
 const initProject = async () => {
@@ -21,21 +21,24 @@ const initProject = async () => {
       return;
     }
 
-    // Resolve the directory path dynamically
-    const __filename = fileURLToPath(import.meta.url);
-    const __dirname = path.dirname(__filename);
-
-    // Adjust the template directory path
-    const templateDir = path.resolve(__dirname, '../../src/templates/common');
+    // Dynamically resolve the templates directory
+    let templateDir = path.resolve(process.cwd(), 'templates/common');
+    if (!fs.existsSync(templateDir)) {
+      // If not found, try to resolve from the global package
+      // Resolve __dirname using import.meta.url for ES module
+      const __filename = fileURLToPath(import.meta.url);
+      const __dirname = path.dirname(__filename);  // Resolve the directory path
+      const globalPackagePath = path.resolve(__dirname, '../../src/templates/common');  // Adjusted for global package location
+      if (fs.existsSync(globalPackagePath)) {
+        templateDir = globalPackagePath;
+      } else {
+        console.error(chalk.red('Template directory not found!'));
+        return;
+      }
+    }
 
     // Debugging: Log the resolved path
     console.log(chalk.blue('Template directory path: '), templateDir);
-
-    // Check if the template directory exists
-    if (!fs.existsSync(templateDir)) {
-      console.error(chalk.red('Template directory not found!'));
-      return;
-    }
 
     // Define files to copy
     const files = ['.gitignore', 'README.md'];

@@ -2,20 +2,25 @@ import fs from 'fs-extra';
 import path from 'path';
 import chalk from 'chalk';
 
+// Generate template with extra options and feedback
 const generateTemplate = async (options) => {
   try {
     console.log(chalk.green(`Generating a ${options.language} microservice template...`));
 
-    // Adjust the template path to your absolute path for 'templates' folder
-    const templatePath = path.resolve('C:/Users/Nautilus/Desktop/Microservices/templates', options.language);
-
-    // Check if the template exists
+    // Dynamically resolve the template path based on the language
+    let templatePath = path.resolve(process.cwd(), `templates/${options.language}`);
     if (!fs.existsSync(templatePath)) {
-      console.error(chalk.red(`Template for ${options.language} not found at ${templatePath}!`));
-      return;
+      // If template not found, look in parent directory
+      const parentTemplatePath = path.resolve(process.cwd(), `../templates/${options.language}`);
+      if (fs.existsSync(parentTemplatePath)) {
+        templatePath = parentTemplatePath;
+      } else {
+        console.error(chalk.red(`Template for ${options.language} not found!`));
+        return;
+      }
     }
 
-    // Example of copying template files to the current working directory
+    // Copy the template files to the current working directory
     fs.copySync(templatePath, process.cwd());
 
     console.log(chalk.blue(`${options.language} microservice template generated successfully!`));

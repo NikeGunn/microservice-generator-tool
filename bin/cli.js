@@ -1,19 +1,39 @@
-#!/usr/bin/env node
-
 import { Command } from 'commander';
 import chalk from 'chalk';
 import figlet from 'figlet';
 import boxen from 'boxen';
 import path from 'path';
-import { fileURLToPath } from 'url';
 import fs from 'fs';
+import { fileURLToPath } from 'url';
 
-// Dynamically resolve file paths
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// Function to resolve template directory
+const getTemplateDirectory = () => {
+  // Use path.join() to correctly join paths for local template directory
+  const localTemplateDir = path.join(process.cwd(), 'src', 'templates', 'common');
+  console.log(`Checking local template directory at: ${localTemplateDir}`);
+  
+  // Check if the local template directory exists
+  if (fs.existsSync(localTemplateDir)) {
+    return localTemplateDir;
+  }
+
+  // Resolve global template directory using import.meta.url
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = path.dirname(__filename);
+  const globalTemplateDir = path.join(__dirname, '..', 'src', 'templates', 'common');
+  console.log(`Checking global template directory at: ${globalTemplateDir}`);
+
+  // Check if the global template directory exists
+  if (fs.existsSync(globalTemplateDir)) {
+    return globalTemplateDir;
+  }
+
+  // Return null if neither directory is found
+  return null;
+};
 
 // Path to templates (resolved dynamically)
-const templatesDir = path.resolve(__dirname, '../src/templates/common');
+const templatesDir = getTemplateDirectory();
 
 // Add a banner and splash text
 const welcomeText = figlet.textSync('TurboGen', {
@@ -58,8 +78,8 @@ program
     console.log(chalk.greenBright('Initializing your microservices project... Please wait.'));
     
     // Error handling if the templates folder doesn't exist
-    if (!fs.existsSync(templatesDir)) {
-      console.error(chalk.redBright(`Error: Template directory not found at ${templatesDir}.`));
+    if (!templatesDir) {
+      console.error(chalk.redBright('Error: Template directory not found.'));
       process.exit(1);
     }
 
