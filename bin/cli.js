@@ -6,10 +6,21 @@ import figlet from 'figlet';
 import boxen from 'boxen';
 import { readFileSync } from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
-// Dynamically fetch the installed version
+// Resolve the directory of the current file for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Dynamically fetch the installed version from package.json
 const packagePath = path.resolve(__dirname, '../package.json');
-const { version } = JSON.parse(readFileSync(packagePath, 'utf8'));
+let version = 'unknown';
+try {
+  const packageData = JSON.parse(readFileSync(packagePath, 'utf8'));
+  version = packageData.version;
+} catch (error) {
+  console.error(chalk.red(`Error reading version: ${error.message}`));
+}
 
 // Add a banner and splash text
 const welcomeText = figlet.textSync('TurboGen', {
@@ -40,7 +51,7 @@ const program = new Command();
 program
   .name('turbogen')
   .description('CLI tool for generating microservices templates')
-  .version(version) // Dynamically fetch the installed version
+  .version(version) // Dynamically use the installed version
   .hook('preAction', () => {
     console.log(chalk.cyan(welcomeText));
     console.log(infoBox);
@@ -53,7 +64,6 @@ program
   .action(async () => {
     console.log(chalk.greenBright('Initializing your microservices project... Please wait.'));
     
-    // Dynamically import the initProject function
     const { initProject } = await import('../src/commands/init.js');
     initProject();
   });
@@ -66,7 +76,6 @@ program
   .action(async (options) => {
     console.log(chalk.greenBright(`Generating ${options.language} microservice template...`));
 
-    // Dynamically import the generateTemplate function
     const { generateTemplate } = await import('../src/commands/generate.js');
     generateTemplate(options);
   });
@@ -79,7 +88,6 @@ program.on('command:*', () => {
   program.help();
 });
 
-// Display usage message if no command is provided
 program.on('exit', (code) => {
   if (code !== 0) {
     console.log(chalk.redBright('Oops! Something went wrong.'));
