@@ -1,6 +1,6 @@
 {
   "name": "turbogen",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "CLI tool for generating project templates",
   "type": "module",
   "main": "bin/cli.js",
