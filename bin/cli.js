@@ -4,8 +4,12 @@ import { Command } from 'commander';
 import chalk from 'chalk';
 import figlet from 'figlet';
 import boxen from 'boxen';
+import { readFileSync } from 'fs';
+import path from 'path';
 
-const program = new Command();
+// Dynamically fetch the installed version
+const packagePath = path.resolve(__dirname, '../package.json');
+const { version } = JSON.parse(readFileSync(packagePath, 'utf8'));
 
 // Add a banner and splash text
 const welcomeText = figlet.textSync('TurboGen', {
@@ -31,10 +35,12 @@ const infoBox = boxen(
 );
 
 // Program introduction with branding
+const program = new Command();
+
 program
   .name('turbogen')
   .description('CLI tool for generating microservices templates')
-  .version('1.0.0')
+  .version(version) // Dynamically fetch the installed version
   .hook('preAction', () => {
     console.log(chalk.cyan(welcomeText));
     console.log(infoBox);
