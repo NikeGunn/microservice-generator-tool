@@ -51,7 +51,7 @@
     "bin/",
     "src/",
     "src/templates/**",
-    "README.md"
+    "Readme.md"
   ],
   "engines": {
     "node": ">=14.0.0"
