@@ -3,7 +3,7 @@ name: Publish to npm
 on:
   push:
     branches:
-      - main  # Trigger this action on push to the main branch (or any other branch you want)
+      - main  # Trigger this action on push to the main branch
 
 jobs:
   publish:
@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'  # or any Node.js version you are using
+          node-version: '18'  # Updated to Node.js 18 for compatibility
 
       - name: Configure Git
         run: |
@@ -28,7 +28,7 @@ jobs:
 
       - name: Publish to npm
         run: |
-          npm version patch -m "Release version %s"  # or minor/major depending on your needs
+          npm version patch -m "Release version %s"  # Adjust version increment as needed
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
