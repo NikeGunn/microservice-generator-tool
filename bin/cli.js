@@ -40,7 +40,7 @@ const program = new Command();
 program
   .name('turbogen')
   .description('CLI tool for generating microservices templates')
-  .version('1.0.4')
+  .version('v1.0.9')
   .hook('preAction', () => {
     console.log(chalk.cyan(welcomeText));
     console.log(infoBox);
