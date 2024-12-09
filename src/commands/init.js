@@ -1,14 +1,13 @@
 import fs from 'fs-extra';
 import path from 'path';
 import chalk from 'chalk';
-import prompts from 'prompts'; // Import prompts
-import { fileURLToPath } from 'url';
+import prompts from 'prompts';
 
-// Function to initialize the project
-const initProject = async () => {
+const initProject = async (templateDir) => {
   try {
     console.log(chalk.green('Initializing a new microservices project...'));
 
+    // Confirm initialization with the user
     const response = await prompts({
       type: 'confirm',
       name: 'confirm',
@@ -21,19 +20,9 @@ const initProject = async () => {
       return;
     }
 
-    // Resolve the directory path dynamically
-    const __filename = fileURLToPath(import.meta.url);
-    const __dirname = path.dirname(__filename);
-
-    // Adjust the template directory path
-    const templateDir = path.resolve(__dirname, '../../src/templates/common');
-
-    // Debugging: Log the resolved path
-    console.log(chalk.blue('Template directory path: '), templateDir);
-
     // Check if the template directory exists
     if (!fs.existsSync(templateDir)) {
-      console.error(chalk.red('Template directory not found!'));
+      console.error(chalk.red('Template directory does not exist!'));
       return;
     }
 
@@ -41,11 +30,19 @@ const initProject = async () => {
     const files = ['.gitignore', 'README.md'];
     const rootDir = process.cwd();
 
-    // Copy template files to the current working directory
+    console.log(chalk.blue(`Copying files to: ${rootDir}`));
+
+    // Copy files from the template directory
     files.forEach((file) => {
       const srcFile = path.join(templateDir, file);
       const destFile = path.join(rootDir, file);
-      fs.copySync(srcFile, destFile);
+
+      if (fs.existsSync(srcFile)) {
+        fs.copySync(srcFile, destFile);
+        console.log(chalk.green(`Copied ${file} to ${rootDir}`));
+      } else {
+        console.warn(chalk.yellow(`File not found in templates: ${file}`));
+      }
     });
 
     console.log(chalk.blue('Project initialized successfully!'));
