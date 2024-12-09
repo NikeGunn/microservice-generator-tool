@@ -1,0 +1,29 @@
+name: Publish to npm
+
+on:
+  push:
+    branches:
+      - main  # Trigger this action on push to the main branch (or any other branch you want)
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # or any Node.js version you are using
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Publish to npm
+        run: |
+          npm version patch -m "Release version %s"  # or minor/major depending on your needs
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
