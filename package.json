@@ -50,8 +50,7 @@
   "files": [
     "bin/",
     "src/",
-    "src/templates/**",
-    "README.md"
+    "src/templates/**"
   ],
   "engines": {
     "node": ">=14.0.0"

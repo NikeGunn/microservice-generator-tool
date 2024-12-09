@@ -1,184 +1,80 @@
-<div align="center">
+# 🌀 **TurboGen CLI** 🌀  
 
-# 🚀 DevBoost CLI
 
-<img src="https://github.com/NikeGunn/imagess/blob/main/devboost-future.gif?raw=true" alt="DevBoost CLI" width="400"/>
+```text
+ |_   _|   _ _ __| |__   ___  / ___| ___ _ __  
+   | || | | | '__| '_ \ / _ \| |  _ / _ \ '_ \ 
+   | || |_| | |  | |_) | (_) | |_| |  __/ | | |
+   |_| \__,_|_|  |_.__/ \___/ \____|\___|_| |_|
 
-[![Version](https://img.shields.io/badge/VERSION-2.0.6-6C5CE7?style=for-the-badge&logo=v&logoColor=white)](https://github.com/yourusername/devboost-cli)
-[![License](https://img.shields.io/badge/LICENSE-MIT-00B894?style=for-the-badge&logo=l&logoColor=white)](./LICENSE)
-[![Node](https://img.shields.io/badge/NODE-%3E%3D16.0.0-81ECEC?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org)
-
-# 🚀 Your Ultimate Productivity Booster for Developers
-
-Simplifying day-to-day development tasks with a modern, feature-rich CLI tool.
-
-</div>
-
-<p align="center">
-  <a href="#features">Features</a> •
-  <a href="#installation">Installation</a> •
-  <a href="#commands">Commands</a> •
-  <a href="#examples">Examples</a> •
-  <a href="#contributing">Contributing</a>
-</p>
-
-## 🌟 Features
-
-```
 ╭──────────────────────────────────────────────╮
-│ ⚡ Project Scaffolding                      │
-│ 📦 Dependency Management                    │
-│ 🔧 Environment Management                   │
-│ 🔄 Git Workflow Automation                  │
-│ 🧪 API Testing Suite                        │
-│ 📊 Monitoring & Analytics                   │
+│                                              │
+│ Welcome to TurboGen CLI! 🚀                  │
+│ Generate Microservices Templates Effortlessly│
+│ Use --help for available commands            │
+│                                              │
 ╰──────────────────────────────────────────────╯
-```
 
-## 🛠 Installation
+✨ TurboGen CLI is your ultimate toolkit for kickstarting scalable microservices architecture. With pre-built templates and cutting-edge features, you can focus on what matters: building great software!
 
-```bash
-# Install globally
-npm install -g devboost-cli
 
-# Verify installation
-devboost --version
-```
+This is a generated microservices template using the `turbogen`
 
-## 📖 Commands
+This is a generated microservices template using the `turbogen` CLI tool. It provides a structured and production-ready foundation for building scalable microservices.
 
-### 🚀 Project Scaffolding
+## Features
+- **Preconfigured Docker support** for containerization.
+- **Kubernetes manifests** for deployment.
+- **Environment variable management** with `.env`.
+- **Integrated logging** (Winston for Node.js, logrus for Go).
+- **Scalable architecture** with templates for REST APIs.
 
-```bash
-# Create a new React project
-devboost init react --typescript --directory my-app
+## Getting Started
 
-# Generate components with ease
-devboost generate component MyComponent
-```
+### Prerequisites
+- Docker installed on your system.
+- Kubernetes cluster set up (optional).
+- Node.js v16+ or Go installed (depending on the microservice language).
 
-### 📦 Dependency Management
+### Commands
+1. Initialize a new microservices project:
+   ```bash
+   turbogen init
+   ```
+   This creates basic project files like .gitignore and README.md.
 
-```bash
-# Add dependencies
-devboost add axios
-devboost add jest --dev
+2. Generate a microservices template:
+   ```bash
+   turbogen generate -l <language>
+   ```
+   Replace `<language>` with either `nodejs` or `go`.
 
-# Remove dependencies
-devboost remove lodash
+## Running Locally
 
-# Update all dependencies
-devboost update
-```
+### Node.js
+1. Navigate to the nodejs folder.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Run the application:
+   ```bash
+   npm start
+   ```
 
-### 🔧 Environment Management
+### Go
+1. Navigate to the go folder.
+2. Run the application:
+   ```bash
+   go run main.go
+   ```
 
-```bash
-# Set environment variables
-devboost env set API_URL=https://api.example.com
+## Deployment
 
-# List current environment variables
-devboost env list
-
-# Switch between environments
-devboost env switch development
-```
-
-### 🔄 Git Workflow Automation
-
-```bash
-# Check git status
-devboost git status
-
-# Create a new branch
-devboost git --branch feature/new-feature
-
-# Commit with a custom message
-devboost git --commit "feat: add new feature"
-
-# Push changes to the remote repository
-devboost git --push
-```
-
-### 🧪 API Testing
+### Docker
+Build and run the microservice using Docker:
 
 ```bash
-# Test GET request
-devboost api --url https://api.example.com/users --method GET
+docker build -t microservice .
 
-# Test POST request with payload
-devboost api --url https://api.example.com/users \
-  --method POST \
-  --data '{"name": "John Doe", "email": "john.doe@example.com"}' \
-  --headers '{"Content-Type": "application/json"}'
-```
-
-## 🏗 Project Structure
-
-```
-devboost-cli/
-├── src/
-│   ├── commands/          # Command implementations
-│   │   ├── api.js          # API operations
-│   │   ├── dependency.js   # Package management
-│   │   ├── env.js          # Environment configuration
-│   │   ├── git.js          # Git commands
-│   │   ├── init.js         # Project scaffolding
-│   │   └── index.js        # Command registry
-│   └── core/              # Core logic
-│       ├── utils.js        # Helper functions
-│       └── config.js       # Configuration settings
-└── package.json           # Project metadata
-```
-
-## ⚙️ Error Handling
-
-```javascript
-try {
-  await executeCommand(command);
-} catch (error) {
-  console.error(`[ERROR] ${error.message}`);
-  process.exit(1);
-}
-```
-
-## 📦 Dependencies
-
-```json
-{
-  "@angular/cli": "^19.0.2",
-  "@angular/core": "^19.0.1",
-  "axios": "^1.7.8",
-  "chalk": "^5.3.0",
-  "commander": "^9.5.0",
-  "dotenv": "^16.4.6",
-  "fs-extra": "^11.1.0",
-  "inquirer": "^9.2.3",
-  "ora": "^6.3.0",
-  "react": "^18.3.1"
-}
-```
-
-## 🤝 Contributing
-
-We welcome contributions! To contribute:
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/awesome-feature`
-3. Commit your changes: `git commit -m "feat: add awesome feature"`
-4. Push to your branch: `git push origin feature/awesome-feature`
-5. Create a Pull Request
-
-## 📜 License
-
-This project is licensed under the MIT License.
-
----
-
-<div align="center">
-
-✨ Built with ❤️ for developers by developers. ✨
-
-Achieve more, code less.
-
-</div>
+docker run -p 8080:8080 microservice
