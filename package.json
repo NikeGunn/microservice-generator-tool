@@ -5,7 +5,7 @@
   "type": "module",
   "main": "bin/cli.js",
   "bin": {
-    "turbogen": "./bin/cli.js"
+    "turbogen": "bin/cli.js"
   },
   "scripts": {
     "start": "node bin/cli.js",
@@ -27,7 +27,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/NikeGunn/microservice-generator-tool.git"
+    "url": "git+https://github.com/NikeGunn/microservice-generator-tool.git"
   },
   "bugs": {
     "url": "https://github.com/NikeGunn/microservice-generator-tool/issues"
@@ -51,7 +51,7 @@
     "bin/",
     "src/",
     "src/templates/**",
-    "Readme.md"
+    "README.md"
   ],
   "engines": {
     "node": ">=14.0.0"
