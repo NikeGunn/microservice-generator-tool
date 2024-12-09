@@ -1,11 +1,11 @@
 {
   "name": "turbogen",
-  "version": "1.0.15",
+  "version": "1.0.14",
   "description": "🚀 TurboGen CLI: Effortlessly generate professional-grade microservice templates in Node.js and Go with a single command.",
   "type": "module",
   "main": "bin/cli.js",
   "bin": {
-    "turbogen": "bin/cli.js"
+    "turbogen": "./bin/cli.js"
   },
   "scripts": {
     "start": "node bin/cli.js",
@@ -27,12 +27,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NikeGunn/microservice-generator-tool.git"
+    "url": "https://github.com/NikeGunn/microservice-generator-tool.git"
   },
   "bugs": {
     "url": "https://github.com/NikeGunn/microservice-generator-tool/issues"
   },
-  "homepage": "https://github.com/NikeGunn/microservice-generator-tool#README",
+  "homepage": "https://github.com/NikeGunn/microservice-generator-tool#readme",
   "dependencies": {
     "boxen": "^8.0.1",
     "chalk": "^4.1.2",
