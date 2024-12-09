@@ -48,10 +48,11 @@
     "prettier": "^3.4.2"
   },
   "files": [
-    "bin/",
-    "src/",
-    "src/templates/**"
-  ],
+  "bin/",
+  "src/",
+  "src/templates/**",
+  "README.md"
+],
   "engines": {
     "node": ">=14.0.0"
   },
