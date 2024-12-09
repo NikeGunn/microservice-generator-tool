@@ -1,22 +1,38 @@
 {
   "name": "turbogen",
   "version": "1.0.7",
-  "description": "CLI tool for generating project templates",
+  "description": "🚀 TurboGen CLI: Effortlessly generate professional-grade microservice templates in Node.js and Go with a single command.",
   "type": "module",
   "main": "bin/cli.js",
   "bin": {
     "turbogen": "./bin/cli.js"
   },
   "scripts": {
-    "start": "node bin/cli.js"
+    "start": "node bin/cli.js",
+    "lint": "eslint . --ext .js",
+    "format": "prettier --write .",
+    "test": "echo \"No tests yet! Contribute at https://github.com/NikeGunn/microservice-generator-tool/issues\""
   },
   "keywords": [
     "cli",
+    "microservices",
     "generator",
-    "templates"
+    "project-template",
+    "nodejs",
+    "golang",
+    "devops",
+    "tool"
   ],
-  "author": "",
+  "author": "NikeGunn",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NikeGunn/microservice-generator-tool.git"
+  },
+  "bugs": {
+    "url": "https://github.com/NikeGunn/microservice-generator-tool/issues"
+  },
+  "homepage": "https://github.com/NikeGunn/microservice-generator-tool#readme",
   "dependencies": {
     "boxen": "^8.0.1",
     "chalk": "^4.1.2",
@@ -25,8 +41,7 @@
     "fs-extra": "^10.1.0",
     "inquirer": "^12.2.0",
     "prompts": "^2.4.2",
-    "shelljs": "^0.8.5",
-    "turbogen": "^1.0.2"
+    "shelljs": "^0.8.5"
   },
   "devDependencies": {
     "eslint": "^9.16.0",
@@ -36,5 +51,12 @@
     "bin/",
     "src/",
     "src/templates/**"
-  ]
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/sponsors/NikeGunn"
+  }
 }
