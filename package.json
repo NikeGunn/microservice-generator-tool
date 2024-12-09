@@ -1,6 +1,6 @@
 {
   "name": "turbogen",
-  "version": "1.0.16",
+  "version": "2.0.0",
   "description": "🚀 TurboGen CLI: Effortlessly generate professional-grade microservice templates in Node.js and Go with a single command.",
   "type": "module",
   "main": "bin/cli.js",
